@@ -1,0 +1,37 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+    <h1>Nossos Locais</h1>
+    {% if user.is_authenticated %}
+        <a href="{% url 'criarLocal' %}" class="btn-novo">Novo Local</a>
+    {% endif %}
+
+    <div class="list-container">
+        {% for local in obj_pagina %}
+            <div class="card">
+                <h3>{{ local.nome }}</h3>
+                <p><strong>Endereço:</strong> {{ local.endereco }}</p>
+                <p><strong>Capacidade:</strong> {{ local.capacidade }} pessoas</p>
+
+                {% if user.is_authenticated %}
+                    <a href="{% url 'atualizarLocal' local.id %}">Editar</a>
+                    <a href="{% url 'apagarLocal' local.id %}" class="btn-danger">Apagar</a>
+                {% endif %}
+            </div>
+        {% empty %}
+            <p>Nenhum local cadastrado.</p>
+        {% endfor %}
+    </div>
+
+    <div class="pagination">
+        {% if obj_pagina.has_previous %}
+            <a href="?page={{ obj_pagina.previous_page_number }}">Anterior</a>
+        {% endif %}
+        <span class="page-current">
+            Página {{ obj_pagina.number }} de {{ obj_pagina.paginator.num_pages }}.
+        </span>
+        {% if obj_pagina.has_next %}
+            <a href="?page={{ obj_pagina.next_page_number }}">Próxima</a>
+        {% endif %}
+    </div>
+{% endblock %}

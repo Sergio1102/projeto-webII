@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestão de Eventos</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+</head>
+<body>
+    <header class="navbar">
+        <div class="container">
+            <a href="{% url 'listarEventos' %}" class="logo">Eventos.com</a>
+            <nav>
+                <ul>
+                    <li><a href="{% url 'listarEventos' %}">Eventos</a></li>
+                    <li><a href="{% url 'listarLocais' %}">Locais</a></li>
+                    <li><a href="{% url 'listarPalestrantes' %}">Palestrantes</a></li>
+                    <li><a href="{% url 'listarCatEventos' %}">Categorias</a></li>
+                    {% if user.is_authenticated %}
+                        <li><a href="{% url 'logout' %}">Sair ({{ user.username }})</a></li>
+                    {% else %}
+                        <li><a href="{% url 'login' %}">Login</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2025 - Projeto Web II</p>
+    </footer>
+</body>
+</html>
