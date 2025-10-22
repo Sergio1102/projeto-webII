@@ -10,6 +10,8 @@ urlpatterns = [
     path('evento/<int:id>/apagar/', views.apagarEvento, name='apagarEvento'),
     path('evento/<int:id>/inscrever/', views.inscrever_evento, name='inscrever_evento'),
     
+    path('admin/', views.admin_dashboard, name='admin_dashboard'),
+    
     path('locais/', views.listarLocais, name='listarLocais'),
     path('local/novo/', views.criarLocal, name='criarLocal'),    
     path('local/<int:id>/editar/', views.atualizarLocal, name='atualizarLocal'),   
@@ -25,6 +27,6 @@ urlpatterns = [
     path('categoria/<int:id>/editar/', views.atualizarCatEvento, name='atualizarCatEvento'),
     path('categoria/<int:id>/apagar/', views.apagarCatEvento, name='apagarCatEvento'),
 
-    path('accounts/', include('django.contrib.auth.urls')), 
+    path('', include('django.contrib.auth.urls')), 
     path('register/', views.register, name='register'),
 ]

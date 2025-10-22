@@ -11,7 +11,7 @@
 <body>
     <header class="navbar">
         <div class="container">
-            <a href="{% url 'listarEventos' %}" class="logo">Eventos.com</a>
+            <a href="{% url 'listarEventos' %}" class="logo">Eventos<span>.</span>com</a>
             <nav>
                 <ul>
                     <li><a href="{% url 'listarEventos' %}">Eventos</a></li>
@@ -19,6 +19,9 @@
                     <li><a href="{% url 'listarPalestrantes' %}">Palestrantes</a></li>
                     <li><a href="{% url 'listarCatEventos' %}">Categorias</a></li>
                     {% if user.is_authenticated %}
+                        {% if user.is_staff %}
+                            <li><a href="{% url 'admin_dashboard' %}">Painel Admin</a></li>
+                        {% endif %}
                         <li>
                             <form method="post" action="{% url 'logout' %}" id="logout-form">
                                 {% csrf_token %}
@@ -39,7 +42,7 @@
     </main>
 
     <footer class="footer">
-        <p>&copy; 2025 - Projeto Web II</p>
+        <p>&copy; 2025 - Projeto Web II - desenvolvido por SVNS</p>
     </footer>
 </body>
 </html>

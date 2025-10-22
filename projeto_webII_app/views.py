@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 from .models import Evento, Local, Palestrante, CategoriaEvento, Inscricao
 from .forms import FormularioEvento, FormularioLocal, FormularioPalestrante, FormularioCatEvento
 
@@ -32,7 +33,7 @@ def detalharEvento(request, id):
         inscrito = Inscricao.objects.filter(participante=request.user, evento=evento).exists()
     return render(request, 'app/detalharEvento.html', {'evento': evento, 'inscrito': inscrito})
 
-@login_required(login_url='/login/')
+@login_required
 def criarEvento(request):
     if request.method == 'POST':
         form = FormularioEvento(request.POST, request.FILES)
@@ -43,7 +44,7 @@ def criarEvento(request):
         form = FormularioEvento()
     return render(request, 'app/formularioEvento.html', {'form': form, 'tipo': 'Cadastrar Evento'})
 
-@login_required(login_url='/login/')
+@login_required
 def atualizarEvento(request, id):
     evento = get_object_or_404(Evento, pk=id)
     form = FormularioEvento(request.POST or None, request.FILES or None, instance=evento)
@@ -54,7 +55,7 @@ def atualizarEvento(request, id):
         
     return render(request, 'app/formularioEvento.html', {'form': form, 'tipo': 'Editar Evento'})
 
-@login_required(login_url='/login/')
+@login_required
 def apagarEvento(request, id):
     evento = get_object_or_404(Evento, pk=id)
     if request.method == 'POST':
@@ -72,7 +73,7 @@ def listarLocais(request):
     
     return render(request, 'app/listarLocais.html', {'obj_pagina': obj_pagina})
 
-@login_required(login_url='/login/')
+@login_required
 def criarLocal(request):
     if request.method == 'POST':
         form = FormularioLocal(request.POST)
@@ -83,7 +84,7 @@ def criarLocal(request):
         form = FormularioLocal()
     return render(request, 'app/formularioGenerico.html', {'form': form, 'tipo': 'Cadastrar Local'})
 
-@login_required(login_url='/login/')
+@login_required
 def atualizarLocal(request, id):
     local = get_object_or_404(Local, pk=id)
     form = FormularioLocal(request.POST or None, instance=local)
@@ -94,7 +95,7 @@ def atualizarLocal(request, id):
         
     return render(request, 'app/formularioGenerico.html', {'form': form, 'tipo': 'Editar Local'})
 
-@login_required(login_url='/login/')
+@login_required
 def apagarLocal(request, id):
     local = get_object_or_404(Local, pk=id)
     if request.method == 'POST':
@@ -112,7 +113,7 @@ def listarPalestrantes(request):
     
     return render(request, 'app/listarPalestrantes.html', {'obj_pagina': obj_pagina})
 
-@login_required(login_url='/login/')
+@login_required
 def criarPalestrante(request):
     if request.method == 'POST':
         form = FormularioPalestrante(request.POST, request.FILES)
@@ -123,7 +124,7 @@ def criarPalestrante(request):
         form = FormularioPalestrante()
     return render(request, 'app/formularioGenerico.html', {'form': form, 'tipo': 'Cadastrar Palestrante'})
 
-@login_required(login_url='/login/')
+@login_required
 def atualizarPalestrante(request, id):
     palestrante = get_object_or_404(Palestrante, pk=id)
     form = FormularioPalestrante(request.POST or None, request.FILES or None, instance=palestrante)
@@ -134,7 +135,7 @@ def atualizarPalestrante(request, id):
         
     return render(request, 'app/formularioGenerico.html', {'form': form, 'tipo': 'Editar Palestrante'})
 
-@login_required(login_url='/login/')
+@login_required
 def apagarPalestrante(request, id):
     palestrante = get_object_or_404(Palestrante, pk=id)
     if request.method == 'POST':
@@ -152,7 +153,7 @@ def listarCatEventos(request):
     
     return render(request, 'app/listarCatEventos.html', {'obj_pagina': obj_pagina})
 
-@login_required(login_url='/login/')
+@login_required
 def criarCatEvento(request):
     if request.method == 'POST':
         form = FormularioCatEvento(request.POST)
@@ -163,7 +164,7 @@ def criarCatEvento(request):
         form = FormularioCatEvento()
     return render(request, 'app/formularioGenerico.html', {'form': form, 'tipo': 'Cadastrar Categoria'})
 
-@login_required(login_url='/login/')
+@login_required
 def atualizarCatEvento(request, id):
     categoria = get_object_or_404(CategoriaEvento, pk=id)
     form = FormularioCatEvento(request.POST or None, instance=categoria)
@@ -174,7 +175,7 @@ def atualizarCatEvento(request, id):
         
     return render(request, 'app/formularioGenerico.html', {'form': form, 'tipo': 'Editar Categoria'})
 
-@login_required(login_url='/login/')
+@login_required
 def apagarCatEvento(request, id):
     categoria = get_object_or_404(CategoriaEvento, pk=id)
     if request.method == 'POST':
@@ -182,7 +183,7 @@ def apagarCatEvento(request, id):
         return redirect('listarCatEventos')
     return render(request, 'app/apagarGenerico.html', {'objeto': categoria, 'tipo': 'Categoria'})
 
-@login_required(login_url='/login/')
+@login_required
 def inscrever_evento(request, id):
     if request.method == 'POST':
         evento = get_object_or_404(Evento, pk=id)
@@ -194,3 +195,22 @@ def inscrever_evento(request, id):
         return render(request, 'app/partials/botao_inscrito.html')
     
     return redirect('detalharEvento', id=id)
+
+@login_required
+def admin_dashboard(request):
+    if not request.user.is_staff:
+        return redirect('listarEventos')
+
+    num_eventos = Evento.objects.count()
+    num_locais = Local.objects.count()
+    num_palestrantes = Palestrante.objects.count()
+    num_usuarios = User.objects.count()
+
+    context = {
+        'num_eventos': num_eventos,
+        'num_locais': num_locais,
+        'num_palestrantes': num_palestrantes,
+        'num_usuarios': num_usuarios
+    }
+    
+    return render(request, 'app/admin_dashboard.html', context)

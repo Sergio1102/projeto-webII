@@ -1,0 +1,62 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+    <h1 class="dashboard-title">Painel Administrativo</h1>
+
+    <div class="stats-container">
+        <div class="stat-card">
+            <h2>{{ num_eventos }}</h2>
+            <p>Eventos Cadastrados</p>
+        </div>
+        <div class="stat-card">
+            <h2>{{ num_locais }}</h2>
+            <p>Locais</p>
+        </div>
+        <div class="stat-card">
+            <h2>{{ num_palestrantes }}</h2>
+            <p>Palestrantes</p>
+        </div>
+        <div class="stat-card">
+            <h2>{{ num_usuarios }}</h2>
+            <p>Usuários Registrados</p>
+        </div>
+    </div>
+
+    <div class="management-container">
+        <div class="card">
+            <h3>Gerenciar Eventos</h3>
+            <p>Adicione, edite ou remova eventos do sistema.</p>
+            <div class="actions">
+                <a href="{% url 'listarEventos' %}" class="btn-gerenciar">Ver Todos</a>
+                <a href="{% url 'criarEvento' %}" class="btn-novo-small">Adicionar Novo</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>Gerenciar Locais</h3>
+            <p>Adicione, edite ou remova locais disponíveis.</p>
+            <div class="actions">
+                <a href="{% url 'listarLocais' %}" class="btn-gerenciar">Ver Todos</a>
+                <a href="{% url 'criarLocal' %}" class="btn-novo-small">Adicionar Novo</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>Gerenciar Palestrantes</h3>
+            <p>Adicione, edite ou remova palestrantes.</p>
+            <div class="actions">
+                <a href="{% url 'listarPalestrantes' %}" class="btn-gerenciar">Ver Todos</a>
+                <a href="{% url 'criarPalestrante' %}" class="btn-novo-small">Adicionar Novo</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>Gerenciar Categorias</h3>
+            <p>Adicione, edite ou remova categorias de eventos.</p>
+            <div class="actions">
+                <a href="{% url 'listarCatEventos' %}" class="btn-gerenciar">Ver Todos</a>
+                <a href="{% url 'criarCatEvento' %}" class="btn-novo-small">Adicionar Novo</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -6,7 +6,8 @@ class FormularioEvento(forms.ModelForm):
         model = Evento
         fields = '__all__'
         widgets = {
-            'data_hora': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
+            'data_hora': forms.DateTimeInput(
+                attrs={'type': 'datetime-local'}, format='%Y-%m-%dT%H:%M'),
             'palestrantes': forms.CheckboxSelectMultiple,
         }
 
