@@ -35,6 +35,9 @@ def detalharEvento(request, id):
 
 @login_required
 def criarEvento(request):
+    if not request.user.is_staff:
+        return redirect('listarEventos')
+
     if request.method == 'POST':
         form = FormularioEvento(request.POST, request.FILES)
         if form.is_valid():
@@ -46,6 +49,9 @@ def criarEvento(request):
 
 @login_required
 def atualizarEvento(request, id):
+    if not request.user.is_staff:
+        return redirect('listarEventos')
+
     evento = get_object_or_404(Evento, pk=id)
     form = FormularioEvento(request.POST or None, request.FILES or None, instance=evento)
     
@@ -57,6 +63,9 @@ def atualizarEvento(request, id):
 
 @login_required
 def apagarEvento(request, id):
+    if not request.user.is_staff:
+        return redirect('listarEventos')
+    
     evento = get_object_or_404(Evento, pk=id)
     if request.method == 'POST':
         evento.delete()
@@ -75,6 +84,9 @@ def listarLocais(request):
 
 @login_required
 def criarLocal(request):
+    if not request.user.is_staff:
+        return redirect('listarEventos')
+    
     if request.method == 'POST':
         form = FormularioLocal(request.POST)
         if form.is_valid():
@@ -86,6 +98,9 @@ def criarLocal(request):
 
 @login_required
 def atualizarLocal(request, id):
+    if not request.user.is_staff:
+        return redirect('listarEventos')
+    
     local = get_object_or_404(Local, pk=id)
     form = FormularioLocal(request.POST or None, instance=local)
     
@@ -97,6 +112,9 @@ def atualizarLocal(request, id):
 
 @login_required
 def apagarLocal(request, id):
+    if not request.user.is_staff:
+        return redirect('listarEventos')
+    
     local = get_object_or_404(Local, pk=id)
     if request.method == 'POST':
         local.delete()
@@ -115,6 +133,9 @@ def listarPalestrantes(request):
 
 @login_required
 def criarPalestrante(request):
+    if not request.user.is_staff:
+        return redirect('listarEventos')
+    
     if request.method == 'POST':
         form = FormularioPalestrante(request.POST, request.FILES)
         if form.is_valid():
@@ -126,6 +147,9 @@ def criarPalestrante(request):
 
 @login_required
 def atualizarPalestrante(request, id):
+    if not request.user.is_staff:
+        return redirect('listarEventos')
+    
     palestrante = get_object_or_404(Palestrante, pk=id)
     form = FormularioPalestrante(request.POST or None, request.FILES or None, instance=palestrante)
     
@@ -137,6 +161,9 @@ def atualizarPalestrante(request, id):
 
 @login_required
 def apagarPalestrante(request, id):
+    if not request.user.is_staff:
+        return redirect('listarEventos')
+    
     palestrante = get_object_or_404(Palestrante, pk=id)
     if request.method == 'POST':
         palestrante.delete()
@@ -155,6 +182,9 @@ def listarCatEventos(request):
 
 @login_required
 def criarCatEvento(request):
+    if not request.user.is_staff:
+        return redirect('listarEventos')
+    
     if request.method == 'POST':
         form = FormularioCatEvento(request.POST)
         if form.is_valid():
@@ -166,6 +196,9 @@ def criarCatEvento(request):
 
 @login_required
 def atualizarCatEvento(request, id):
+    if not request.user.is_staff:
+        return redirect('listarEventos')
+    
     categoria = get_object_or_404(CategoriaEvento, pk=id)
     form = FormularioCatEvento(request.POST or None, instance=categoria)
     
@@ -177,6 +210,9 @@ def atualizarCatEvento(request, id):
 
 @login_required
 def apagarCatEvento(request, id):
+    if not request.user.is_staff:
+        return redirect('listarEventos')
+    
     categoria = get_object_or_404(CategoriaEvento, pk=id)
     if request.method == 'POST':
         categoria.delete()

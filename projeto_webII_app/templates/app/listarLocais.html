@@ -2,7 +2,7 @@
 
 {% block content %}
     <h1>Nossos Locais</h1>
-    {% if user.is_authenticated %}
+    {% if user.is_staff %}
         <a href="{% url 'criarLocal' %}" class="btn-novo">Novo Local</a>
     {% endif %}
 
@@ -13,7 +13,7 @@
                 <p><strong>Endereço:</strong> {{ local.endereco }}</p>
                 <p><strong>Capacidade:</strong> {{ local.capacidade }} pessoas</p>
 
-                {% if user.is_authenticated %}
+                {% if user.is_staff %}
                     <div class="card-actions">
                         <a href="{% url 'atualizarLocal' local.id %}" class="btn-editar">Editar</a>
                         <a href="{% url 'apagarLocal' local.id %}" class="btn-danger">Apagar</a>

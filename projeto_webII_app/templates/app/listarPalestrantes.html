@@ -2,7 +2,7 @@
 
 {% block content %}
     <h1>Nossos Palestrantes</h1>
-    {% if user.is_authenticated %}
+    {% if user.is_staff %}
         <a href="{% url 'criarPalestrante' %}" class="btn-novo">Novo Palestrante</a>
     {% endif %}
 
@@ -19,7 +19,7 @@
                 
                 <p>{{ palestrante.mini_bio|truncatewords:20 }}</p>
 
-                {% if user.is_authenticated %}
+                {% if user.is_staff %}
                     <div class="card-actions">
                         <a href="{% url 'atualizarPalestrante' palestrante.id %}" class="btn-editar">Editar</a>
                         <a href="{% url 'apagarPalestrante' palestrante.id %}" class="btn-danger">Apagar</a>
