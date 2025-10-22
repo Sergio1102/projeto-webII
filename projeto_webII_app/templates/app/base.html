@@ -19,7 +19,12 @@
                     <li><a href="{% url 'listarPalestrantes' %}">Palestrantes</a></li>
                     <li><a href="{% url 'listarCatEventos' %}">Categorias</a></li>
                     {% if user.is_authenticated %}
-                        <li><a href="{% url 'logout' %}">Sair ({{ user.username }})</a></li>
+                        <li>
+                            <form method="post" action="{% url 'logout' %}" id="logout-form">
+                                {% csrf_token %}
+                                <button type="submit" class="logout-button">Sair ({{ user.username }})</button>
+                            </form>
+                        </li>
                     {% else %}
                         <li><a href="{% url 'login' %}">Login</a></li>
                     {% endif %}

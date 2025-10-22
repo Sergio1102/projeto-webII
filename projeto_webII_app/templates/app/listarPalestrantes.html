@@ -20,8 +20,10 @@
                 <p>{{ palestrante.mini_bio|truncatewords:20 }}</p>
 
                 {% if user.is_authenticated %}
-                    <a href="{% url 'atualizarPalestrante' palestrante.id %}">Editar</a>
-                    <a href="{% url 'apagarPalestrante' palestrante.id %}" class="btn-danger">Apagar</a>
+                    <div class="card-actions">
+                        <a href="{% url 'atualizarPalestrante' palestrante.id %}" class="btn-editar">Editar</a>
+                        <a href="{% url 'apagarPalestrante' palestrante.id %}" class="btn-danger">Apagar</a>
+                    </div>
                 {% endif %}
             </div>
         {% empty %}

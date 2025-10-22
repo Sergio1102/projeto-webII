@@ -12,6 +12,13 @@
                 <h3><a href="{% url 'detalharEvento' evento.id %}">{{ evento.titulo }}</a></h3>
                 <p>{{ evento.data_hora|date:"d/m/Y H:i" }}</p>
                 <p>{{ evento.local.nome }}</p>
+
+                {% if user.is_authenticated %}
+                    <div class="card-actions">
+                        <a href="{% url 'atualizarEvento' evento.id %}" class="btn-editar">Editar</a>
+                        <a href="{% url 'apagarEvento' evento.id %}" class="btn-danger">Apagar</a>
+                    </div>
+                {% endif %}
             </div>
         {% empty %}
             <p>Nenhum evento cadastrado.</p>
@@ -22,11 +29,13 @@
         {% if obj_pagina.has_previous %}
             <a href="?page={{ obj_pagina.previous_page_number }}">Anterior</a>
         {% endif %}
+
         <span class="page-current">
             Página {{ obj_pagina.number }} de {{ obj_pagina.paginator.num_pages }}.
         </span>
+
         {% if obj_pagina.has_next %}
             <a href="?page={{ obj_pagina.next_page_number }}">Próxima</a>
         {% endif %}
     </div>
-{% endblock %}
+    {% endblock %}

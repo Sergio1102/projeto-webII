@@ -191,6 +191,6 @@ def inscrever_evento(request, id):
             evento=evento
         )
         
-        return render(request, 'app/partials/_botao_inscrito.html')
+        return render(request, 'app/partials/botao_inscrito.html')
     
     return redirect('detalharEvento', id=id)

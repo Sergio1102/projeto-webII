@@ -1,7 +1,7 @@
 {% extends 'app/base.html' %}
 
 {% block content %}
-    <h1>Categorias de Eventos</h1>
+    <h1>Categorias de cateventos</h1>
     {% if user.is_authenticated %}
         <a href="{% url 'criarCatEvento' %}" class="btn-novo">Nova Categoria</a>
     {% endif %}
@@ -14,8 +14,10 @@
                 <h3>{{ categoria.nome }}</h3>
 
                 {% if user.is_authenticated %}
-                    <a href="{% url 'atualizarCatEvento' categoria.id %}">Editar</a>
-                    <a href="{% url 'apagarCatEvento' categoria.id %}" class="btn-danger">Apagar</a>
+                    <div class="card-actions">
+                        <a href="{% url 'atualizarCatEvento' categoria.id %}" class="btn-editar">Editar</a>
+                        <a href="{% url 'apagarCatEvento' categoria.id %}" class="btn-danger">Apagar</a>
+                    </div>
                 {% endif %}
             </div>
         {% empty %}

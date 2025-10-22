@@ -1,0 +1,46 @@
+# Arquivos de Bytecode e Cache do Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Pasta do Ambiente Virtual
+venv/
+.env/
+env/
+ENV/
+.venv/
+
+# Banco de Dados
+db.sqlite3
+db.sqlite3-journal
+
+# Arquivos de Mídia (Uploads dos usuários)
+/media/
+
+# Arquivos Estáticos de Produção
+/static/
+
+# Logs
+*.log
+logs/
+
+# Arquivos de configuração de IDEs e Editores
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Arquivos do Sistema Operacional
+.DS_Store
+Thumbs.db
+
+# Arquivos de Cobertura de Testes
+.coverage
+.coverage.*
+htmlcov/
+
+# Segredos e Configurações Locais
+local_settings.py
+*.key
+*.pem
