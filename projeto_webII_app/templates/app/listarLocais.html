@@ -14,8 +14,10 @@
                 <p><strong>Capacidade:</strong> {{ local.capacidade }} pessoas</p>
 
                 {% if user.is_authenticated %}
-                    <a href="{% url 'atualizarLocal' local.id %}">Editar</a>
-                    <a href="{% url 'apagarLocal' local.id %}" class="btn-danger">Apagar</a>
+                    <div class="card-actions">
+                        <a href="{% url 'atualizarLocal' local.id %}" class="btn-editar">Editar</a>
+                        <a href="{% url 'apagarLocal' local.id %}" class="btn-danger">Apagar</a>
+                    </div>
                 {% endif %}
             </div>
         {% empty %}

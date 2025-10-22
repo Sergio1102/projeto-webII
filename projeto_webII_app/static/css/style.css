@@ -12,17 +12,13 @@ body, h1, h2, h3, h4, p, ul, li, form, figure {
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     line-height: 1.6;
-    background-color: #f4f7f6;
+    background-color: #444444;
     color: #333;
 }
 
 a {
-    color: #007bff;
+    color: #059b00;
     text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
 }
 
 img {
@@ -39,10 +35,10 @@ img {
 }
 
 .navbar {
-    background-color: #343a40;
+    background-color: #244421;
     color: white;
     padding: 1rem 0;
-    border-bottom: 3px solid #007bff;
+    border-bottom: 3px solid #059b00;
 }
 
 .navbar .container {
@@ -56,6 +52,10 @@ img {
     font-weight: bold;
     color: white;
     text-decoration: none;
+
+    span{
+        color: rgb(180, 0, 0);
+    }
 }
 
 .navbar nav ul {
@@ -75,7 +75,27 @@ img {
 }
 
 .navbar nav a:hover {
-    color: #007bff;
+    color: #059b00;
+}
+
+.logout-button {
+    background: rgb(230, 230, 230);
+    border: none;
+    border-radius: 5px;
+    padding: 0.4rem;
+    cursor: pointer;
+    
+    color: #059b00;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+}
+
+.logout-button:hover {
+    background: rgb(147, 158, 140);
+    color: #155800;
 }
 
 main.container {
@@ -92,8 +112,8 @@ main.container {
     text-align: center;
     padding: 2rem 0;
     margin-top: 2rem;
-    color: #888;
-    border-top: 1px solid #e9ecef;
+    color: #222;
+    border-top: 1px solid #a6a7a8;
 }
 
 
@@ -147,8 +167,8 @@ h1 {
 .form-styled input:focus,
 .form-styled textarea:focus,
 .form-styled select:focus {
-    border-color: #007bff;
-    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+    border-color: #059b00;
+    box-shadow: 0 0 0 3px rgba(43, 255, 0, 0.2);
     outline: none;
 }
 
@@ -167,37 +187,59 @@ button,
 
 .form-styled button[type="submit"] {
     width: 100%;
-    background-color: #007bff;
+    background-color: #059b00;
     color: white;
 }
 .form-styled button[type="submit"]:hover {
-    background-color: #0056b3;
+    background-color: #0fb300;
 }
 
 .btn-novo {
-    background-color: #28a745;
-    color: white;
+    background-color: #cefdd9;
+    padding: 0.2rem 0.4rem;
+    border-radius: 5px;
+    color: #18702d;
     display: inline-block;
     margin-bottom: 1.5rem;
 }
 .btn-novo:hover {
-    background-color: #218838;
+    background-color: #5fca77;
+}
+
+.btn-editar {
+    background-color: #d0f3fc;
+    padding: 0.2rem 0.4rem;
+    border-radius: 5px;
+    color: #0066ff;
+}
+.btn-editar:hover {
+    background-color: #6fa1d6;
 }
 
 .btn-danger {
-    background-color: #dc3545;
-    color: white;
+    background-color: #fdd3d7;
+    padding: 0.2rem 0.4rem;
+    border-radius: 5px;
+    color: #c92a3a;
 }
 .btn-danger:hover {
-    background-color: #c82333;
+    background-color: #ce767f;
+}
+
+.card-actions{
+    margin: 0.4rem 5rem;
+    display: flex;
+    justify-content: space-between;
 }
 
 .btn-subscribe {
-    background-color: #28a745;
-    color: white;
+    background-color: #cefdd9;
+    padding: 0.4rem;
+    border-radius: 5px;
+    color: #18702d;
 }
 .btn-subscribe:hover {
-    background-color: #218838;
+    background-color: #5fca77;
 }
 
 .list-container {
@@ -251,7 +293,7 @@ button,
 
 .pagination a {
     background-color: #fff;
-    color: #007bff;
+    color: #047a00da;
 }
 
 .pagination a:hover {
@@ -259,18 +301,10 @@ button,
 }
 
 .pagination .page-current {
-    background-color: #007bff;
+    background-color: #059b00d3;
     color: white;
-    border-color: #007bff;
+    border-color: #059b00cc;
     font-weight: 600;
-}
-
-.event-banner {
-    width: 100%;
-    max-height: 400px;
-    object-fit: cover;
-    margin-bottom: 1.5rem;
-    border-radius: 8px;
 }
 
 .palestrante-foto-small {
@@ -290,6 +324,159 @@ button,
     background-color: #d4edda;
     border-radius: 5px;
     text-align: center;
+}
+
+.event-detail-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.event-banner {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    margin-bottom: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+
+.event-title {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.event-info {
+    background-color: #f8f9fa;
+    border-left: 5px solid #059b00;
+    padding: 1rem 1.5rem;
+    margin-bottom: 2rem;
+    border-radius: 0 8px 8px 0;
+}
+
+.event-info p {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 0.5rem;
+}
+
+.event-description h2,
+.event-speakers h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 0.5rem;
+}
+
+.event-description p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+}
+
+.event-speakers {
+    margin-top: 2rem;
+}
+
+.speakers-list {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.speaker-card {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #f8f9fa;
+    padding: 10px;
+    border-radius: 50px;
+}
+
+.speaker-photo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.event-subscription {
+    text-align: center;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid #eee;
+}
+
+.icon-calendar, .icon-location, .icon-category {
+    display: inline-block;
+    width: 1em;
+}
+
+.dashboard-title {
+    text-align: left;
+    margin-bottom: 2rem;
+}
+
+.stats-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.stat-card {
+    background-color: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 8px;
+    text-align: center;
+    border: 1px solid #e9ecef;
+}
+
+.stat-card h2 {
+    font-size: 2.5rem;
+    color: #059b00;
+}
+
+.stat-card p {
+    color: #6c757d;
+    font-weight: 500;
+}
+
+.management-container h3{
+    color: #333;
+}
+
+.management-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.management-container .card p {
+    margin-bottom: 1rem;
+}
+
+.actions{
+    display: flex;
+    justify-content: space-between;
+    margin: 0 1rem;
+}
+
+.btn-gerenciar {
+    background-color: #e3f0ff;
+    color: #0066ff;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 8px 12px;
+    border-radius: 4px;
+}
+
+.btn-novo-small {
+    background-color: #dbfde0;
+    color: #28a745;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 8px 12px;
+    border-radius: 4px;
 }
 
 @media (max-width: 768px) {
